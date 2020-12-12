@@ -6,4 +6,4 @@ class ProfileSerializers(serializers.ModelSerializer):
     
     class Meta:
         model = Profiles
-        feilds = "__all__"
+        fields = "__all__"
