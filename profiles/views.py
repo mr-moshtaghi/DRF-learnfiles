@@ -13,7 +13,7 @@ def profile_list(request):
 
     if request.method =="GET":
         profiles = Profiles.objects.all()
-        serializers = ProfileSerializers(profiles , many = True)
+        serializers = ProfileSerializers(profiles , many = True)   #many = True ----> several objects
         return JsonResponse(serializers.data , safe=False)
 
     if request.method =="POST":
