@@ -8,7 +8,8 @@ from posts.serializers import PostsSerializers
 
 class ProfileSerializers(serializers.ModelSerializer):
 
-    posts = PostsSerializers( many = True , read_only=True)
+    # posts = PostsSerializers( many = True , read_only=True)
+    posts = serializers.PrimaryKeyRelatedField( many=True , read_only=True) 
     post = PostsSerializers(write_only=True)
     x = serializers.CharField(max_length=5 , read_only=True , default="this is a test for x ")
     
