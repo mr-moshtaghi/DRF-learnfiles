@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import generics
 
 from .models import Profiles
 from .serializers import ProfileSerializers
@@ -32,8 +33,13 @@ from .serializers import ProfileSerializers
 
 
 
-class ProfilesView(APIView):
-    def get (self , request):
-        profiles = Profiles.objects.all()
-        serializers = ProfileSerializers(profiles , many = True)   #many = True ----> several objects
-        return Response(serializers.data)
+# class ProfilesView(APIView):
+#     def get (self , request):
+#         profiles = Profiles.objects.all()
+#         serializers = ProfileSerializers(profiles , many = True)   #many = True ----> several objects
+#         return Response(serializers.data)
+
+
+class Profilesview (generics.ListAPIView):
+    serializer_class = ProfileSerializers
+    queryset = Profiles.objects.all()
