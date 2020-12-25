@@ -9,6 +9,7 @@ from rest_framework import generics
 
 from .models import Profiles
 from .serializers import ProfileSerializers
+from misc.custom_generic import PartialUpdateAPIView
 
 
 # Create your views here.
@@ -44,6 +45,11 @@ class Profilesview (generics.ListCreateAPIView):
     serializer_class = ProfileSerializers
     queryset = Profiles.objects.all()
 
-class ProfileRetrive (generics.RetrieveUpdateDestroyAPIView):
+# class ProfileRetrive (generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = ProfileSerializers
+#     queryset = Profiles.objects.all()
+
+
+class ProfileRetrive (PartialUpdateAPIView):
     serializer_class = ProfileSerializers
     queryset = Profiles.objects.all()
