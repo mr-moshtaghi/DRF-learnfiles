@@ -40,6 +40,10 @@ from .serializers import ProfileSerializers
 #         return Response(serializers.data)
 
 
-class Profilesview (generics.ListAPIView):
+class Profilesview (generics.ListCreateAPIView):
+    serializer_class = ProfileSerializers
+    queryset = Profiles.objects.all()
+
+class ProfileRetrive (generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializers
     queryset = Profiles.objects.all()
