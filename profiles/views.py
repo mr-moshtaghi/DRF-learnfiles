@@ -6,10 +6,13 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import BasicAuthentication , SessionAuthentication
 
 from .models import Profiles
 from .serializers import ProfileSerializers
 from misc.custom_generic import PartialUpdateAPIView
+
 
 
 # Create your views here.
@@ -44,6 +47,8 @@ from misc.custom_generic import PartialUpdateAPIView
 class Profilesview (generics.ListCreateAPIView):
     serializer_class = ProfileSerializers
     queryset = Profiles.objects.all()
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [BasicAuthentication , SessionAuthentication]
 
 # class ProfileRetrive (generics.RetrieveUpdateDestroyAPIView):
 #     serializer_class = ProfileSerializers
